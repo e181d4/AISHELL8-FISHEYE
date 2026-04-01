@@ -1,1 +1,370 @@
-test
+﻿<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Audio-Visual Fisheye Dataset</title>
+  <link rel="stylesheet" href="reference/bootstrap-5.2.2-dist/css/bootstrap.min.css" />
+  <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,700" rel="stylesheet" type="text/css" />
+  <style>
+    :root {
+      --bg: #f6f7fb;
+      --card: #ffffff;
+      --text: #1f2a44;
+      --muted: #6b7280;
+      --accent: #2563eb;
+      --border: #e5e7eb;
+    }
+
+    body {
+      font-family: "Roboto", system-ui, -apple-system, Segoe UI, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+    }
+
+    .section {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      box-shadow: 0 6px 20px rgba(31, 42, 68, 0.06);
+      padding: 28px;
+      margin-bottom: 24px;
+    }
+
+    .section-title {
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+
+    .muted { color: var(--muted); }
+
+    .stat {
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 14px;
+      background: #fbfcff;
+    }
+
+    .btn-play {
+      border: 1px solid var(--accent);
+      color: var(--accent);
+      background: #fff;
+    }
+
+    .btn-play:hover { background: #eef2ff; }
+
+    .player-box {
+      border: 1px dashed var(--border);
+      border-radius: 10px;
+      padding: 14px;
+      background: #fafafa;
+    }
+
+    .table td, .table th { vertical-align: middle; }
+
+    .link-row a {
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 600;
+      margin-right: 16px;
+    }
+
+    .method-card {
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 14px;
+      background: #fbfcff;
+    }
+
+    .download-icon {
+      width: 44px;
+      height: 44px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      background: #ffffff;
+      margin-right: 12px;
+    }
+
+    .download-icon img {
+      width: 30px;
+      height: 30px;
+      display: block;
+    }
+
+    .author-card {
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 14px;
+      background: #fbfcff;
+      text-align: center;
+      max-width: none;
+    }
+
+    .author-meta:empty { display: none; }
+
+    .authors-box {
+      background: #f8f9fa;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 16px;
+      width: 100%;
+    }
+
+    .author-row {
+      display: grid;
+      gap: 16px;
+    }
+
+    .author-row.three {
+      grid-template-columns: repeat(3, minmax(220px, 1fr));
+    }
+
+    .author-row.two {
+      grid-template-columns: repeat(2, minmax(220px, 1fr));
+      max-width: 720px;
+      margin: 16px auto 0;
+    }
+
+    @media (max-width: 900px) {
+      .author-row.three,
+      .author-row.two {
+        grid-template-columns: repeat(2, minmax(220px, 1fr));
+        max-width: none;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .author-row.three,
+      .author-row.two {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .player-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 16px;
+    }
+
+    .sample-card {
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 16px;
+      background: #ffffff;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .sample-title {
+      font-weight: 700;
+    }
+
+    .sample-actions {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .video-shell {
+      position: relative;
+      width: 100%;
+      padding-top: 56.25%;
+      background: #000;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .video-player {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    .audio-player {
+      width: 100%;
+    }
+  </style>
+</head>
+<body>
+  <div class="container py-5">
+    <div class="section" id="paper">
+      <div class="text-center">
+        <h1 class="mb-2">AISHELL8-FISHEYE: A Fisheye Audio-Visual Dataset for Target Speaker Extraction with Distortion-Aware Baselines</h1>
+        <div class="muted">Paper, Authors, and Abstract</div>
+      </div>
+
+      <div class="mt-4">
+        <div class="section-title">Authors</div>
+        <div class="authors-box">
+          <div class="author-row three">
+            <div class="author-card">
+              <div class="fw-bold">Peijun Yang</div>
+              <div class="muted author-meta">photon65537@whu.edu.cn</div>
+              <div class="muted author-meta">Wuhan University</div>
+            </div>
+            <div class="author-card">
+              <div class="fw-bold">Zhan Jin</div>
+              <div class="muted author-meta">zhan.jin@whu.edu.cn</div>
+              <div class="muted author-meta">Wuhan University</div>
+            </div>
+            <div class="author-card">
+              <div class="fw-bold">Ming Li</div>
+              <div class="muted author-meta">ming.li.cuhksz@gmail.com</div>
+              <div class="muted author-meta">The Chinese University of Hong Kong</div>
+            </div>
+          </div>
+          <div class="author-row two">
+            <div class="author-card">
+              <div class="fw-bold">Hui Bu</div>
+              <div class="muted author-meta">buhui@aishelldata.com</div>
+              <div class="muted author-meta">Beijing AISHELL Technology Co., Ltd.</div>
+            </div>
+            <div class="author-card">
+              <div class="fw-bold">Juan Liu</div>
+              <div class="muted author-meta">liujuan@whu.edu.cn</div>
+              <div class="muted author-meta">Wuhan University</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-3">
+        <strong>Abstract:</strong>
+        <p class="muted mb-2">
+          Audio-visual target speaker extraction remains a challenging task, particularly in visually distorted conditions such as those captured by fisheye cameras. 
+It has significant practical implications, such as enabling the extraction of better quality speech during police criminal investigations, journalists's undercover investigations, wearable first-person cameras, etc.
+To address the lack of dedicated datasets for fisheye audio-visual speech processing, we introduce AISHELL8-FISHEYE, the first fisheye audio-visual dataset for target speaker extraction based on lip movement cues. 
+The dataset consists of video captured by both fisheye and normal cameras as well as the corresponding audio recordings, featuring speakers in wide-angle scenes with significant radial distortion. 
+Alongside the dataset, we propose a novel baseline model that leverages a distortion-aware branch pre-trained on fisheye head pose estimation to extract distortion-robust features, which are then fused with lip motion features extracted via a ResNet-based encoder. 
+The fused features are passed through a speech separation module to extract the target speaker's speech. Experimental results demonstrate that our distortion-aware approach significantly outperforms conventional methods on fisheye data.
+        </p>
+      </div>
+
+      <div class="link-row">
+        <a href="#samples">Jump to Audio/Video Samples</a>
+        <a href="#download">Jump to Download</a>
+      </div>
+    </div>
+
+    <div class="section" id="samples">
+      <h2 class="section-title">Audio & Video Samples</h2>
+      <p class="muted">Click play to preview files in the shared players below. Replace paths with your real files.</p>
+
+      <div class="row g-3">
+        <div class="col-lg-4 col-md-6">
+          <div class="sample-card">
+            <div class="sample-title">Sample 01</div>
+            <div class="muted">Indoor multi-source scene</div>
+            <div class="sample-actions">
+              <button class="btn btn-sm btn-play" onclick="playAudio('samples/sample01.wav')">Play Audio</button>
+              <button class="btn btn-sm btn-play" onclick="playVideo('samples/sample01.mp4')">Play Video</button>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6">
+          <div class="sample-card">
+            <div class="sample-title">Sample 02</div>
+            <div class="muted">Street traffic noise</div>
+            <div class="sample-actions">
+              <button class="btn btn-sm btn-play" onclick="playAudio('samples/sample02.wav')">Play Audio</button>
+              <button class="btn btn-sm btn-play" onclick="playVideo('samples/sample02.mp4')">Play Video</button>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6">
+          <div class="sample-card">
+            <div class="sample-title">Sample 03</div>
+            <div class="muted">Crowd activity</div>
+            <div class="sample-actions">
+              <button class="btn btn-sm btn-play" onclick="playAudio('samples/sample03.wav')">Play Audio</button>
+              <button class="btn btn-sm btn-play" onclick="playVideo('samples/sample03.mp4')">Play Video</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="player-box mt-3">
+        <div class="player-grid">
+          <div>
+            <div class="fw-bold mb-2">Audio Player</div>
+            <audio id="global-audio" class="audio-player" controls>
+              <source src="" type="audio/wav" />
+              Your browser does not support the audio element.
+            </audio>
+          </div>
+          <div>
+            <div class="fw-bold mb-2">Video Player</div>
+            <div class="video-shell">
+              <video id="global-video" class="video-player" controls>
+                <source src="" type="video/mp4" />
+                Your browser does not support the video element.
+              </video>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-4">
+        <h3 class="section-title">Method Overview (Brief)</h3>
+        <div class="row g-3">
+          <div class="col-md-4">
+            <div class="method-card">
+              <div class="fw-bold">Sync & Calibration</div>
+              <div class="muted">Audio-video alignment with timestamps and calibration files.</div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="method-card">
+              <div class="fw-bold">Annotation</div>
+              <div class="muted">Event-level intervals and target-level labels.</div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="method-card">
+              <div class="fw-bold">Baselines</div>
+              <div class="muted">Sound source localization and AV detection baselines.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section" id="download">
+      <h2 class="section-title">Download</h2>
+      <p class="muted">Click the icon to open the dataset page.</p>
+      <div class="d-flex align-items-center">
+        <a class="download-icon" href="https://huggingface.co/" target="_blank" rel="noreferrer">
+          <img src="huggingface_logo-noborder.svg" alt="Hugging Face" />
+        </a>
+        <div>
+          <div class="fw-bold">Hugging Face</div>
+          <div class="muted">Replace with your actual dataset link</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function playAudio(path) {
+      const player = document.getElementById('global-audio');
+      if (!player) return;
+      player.src = path;
+      const p = player.play();
+      if (p !== undefined) { p.catch(() => {}); }
+    }
+
+    function playVideo(path) {
+      const player = document.getElementById('global-video');
+      if (!player) return;
+      player.src = path;
+      const p = player.play();
+      if (p !== undefined) { p.catch(() => {}); }
+    }
+  </script>
+</body>
+</html>
