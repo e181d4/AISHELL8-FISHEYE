@@ -89,8 +89,8 @@
     }
 
     .download-icon img {
-      width: 30px;
-      height: 30px;
+      width: 36px;
+      height: 36px;
       display: block;
     }
 
@@ -253,13 +253,13 @@ The fused features are passed through a speech separation module to extract the 
 
     <div class="section" id="samples">
       <h2 class="section-title">Audio & Video Samples</h2>
-      <p class="muted">Click play to preview files in the shared players below. Replace paths with your real files.</p>
+      <p class="muted">The audio and the corresponding fisheye video data, from which the audio originally associated with the video has been extracted.</p>
 
       <div class="row g-3">
         <div class="col-lg-4 col-md-6">
           <div class="sample-card">
             <div class="sample-title">Sample 01</div>
-            <div class="muted">Indoor multi-source scene</div>
+            <div class="muted">utterance 1</div>
             <div class="sample-actions">
               <button class="btn btn-sm btn-play" onclick="playAudio('samples/sample01.wav')">Play Audio</button>
               <button class="btn btn-sm btn-play" onclick="playVideo('samples/sample01.mp4')">Play Video</button>
@@ -269,7 +269,7 @@ The fused features are passed through a speech separation module to extract the 
         <div class="col-lg-4 col-md-6">
           <div class="sample-card">
             <div class="sample-title">Sample 02</div>
-            <div class="muted">Street traffic noise</div>
+            <div class="muted">utterance 2</div>
             <div class="sample-actions">
               <button class="btn btn-sm btn-play" onclick="playAudio('samples/sample02.wav')">Play Audio</button>
               <button class="btn btn-sm btn-play" onclick="playVideo('samples/sample02.mp4')">Play Video</button>
@@ -279,7 +279,7 @@ The fused features are passed through a speech separation module to extract the 
         <div class="col-lg-4 col-md-6">
           <div class="sample-card">
             <div class="sample-title">Sample 03</div>
-            <div class="muted">Crowd activity</div>
+            <div class="muted">utterance 3</div>
             <div class="sample-actions">
               <button class="btn btn-sm btn-play" onclick="playAudio('samples/sample03.wav')">Play Audio</button>
               <button class="btn btn-sm btn-play" onclick="playVideo('samples/sample03.mp4')">Play Video</button>
@@ -334,16 +334,62 @@ The fused features are passed through a speech separation module to extract the 
       </div>
     </div>
 
+    <div class="section" id="separation">
+      <h2 class="section-title">Separation Demo</h2>
+      <p class="muted">Audio-visual speech separation: click to play the mixture and the separated result.</p>
+      <div class="row g-3">
+        <div class="col-lg-6">
+          <div class="sample-card">
+            <div class="sample-title">Mixture vs. Separated Output Demo 01</div>
+            <div class="muted">Audio-only playback.</div>
+            <div class="sample-actions">
+              <button class="btn btn-sm btn-play" onclick="playSeparationAudio('samples/sep_mix_1.wav')">Play Mixture</button>
+              <button class="btn btn-sm btn-play" onclick="playSeparationAudio('samples/sep_result_1.wav')">Play Separated</button>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="sample-card">
+            <div class="sample-title">Mixture vs. Separated Output Demo 02</div>
+            <div class="muted">Audio-only playback.</div>
+            <div class="sample-actions">
+              <button class="btn btn-sm btn-play" onclick="playSeparationAudio('samples/sep_mix_2.wav')">Play Mixture</button>
+              <button class="btn btn-sm btn-play" onclick="playSeparationAudio('samples/sep_result_2.wav')">Play Separated</button>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="sample-card">
+            <div class="sample-title">Mixture vs. Separated Output Demo 03</div>
+            <div class="muted">Audio-only playback.</div>
+            <div class="sample-actions">
+              <button class="btn btn-sm btn-play" onclick="playSeparationAudio('samples/sep_mix_3.wav')">Play Mixture</button>
+              <button class="btn btn-sm btn-play" onclick="playSeparationAudio('samples/sep_result_3.wav')">Play Separated</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="player-box mt-3">
+        <div>
+          <div class="fw-bold mb-2">Separation Audio Player</div>
+          <audio id="separation-audio" class="audio-player" controls>
+            <source src="" type="audio/wav" />
+            Your browser does not support the audio element.
+          </audio>
+        </div>
+      </div>
+    </div>
+
     <div class="section" id="download">
       <h2 class="section-title">Download</h2>
       <p class="muted">Click the icon to open the dataset page.</p>
-      <div class="d-flex align-items-center">
+      <div class="d-flex align-items-center justify-content-center">
         <a class="download-icon" href="https://huggingface.co/datasets/phot0nqqq/AISHELL8-FISHEYE" target="_blank" rel="noreferrer">
           <img src="huggingface_logo-noborder.svg" alt="Hugging Face" />
         </a>
         <div>
           <div class="fw-bold">Hugging Face</div>
-          <div class="muted">Replace with your actual dataset link</div>
         </div>
       </div>
     </div>
@@ -360,6 +406,14 @@ The fused features are passed through a speech separation module to extract the 
 
     function playVideo(path) {
       const player = document.getElementById('global-video');
+      if (!player) return;
+      player.src = path;
+      const p = player.play();
+      if (p !== undefined) { p.catch(() => {}); }
+    }
+
+    function playSeparationAudio(path) {
+      const player = document.getElementById('separation-audio');
       if (!player) return;
       player.src = path;
       const p = player.play();
