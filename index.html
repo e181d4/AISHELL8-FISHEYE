@@ -49,9 +49,18 @@
       border: 1px solid var(--accent);
       color: var(--accent);
       background: #fff;
+      border-radius: 999px;
+      padding: 0.35rem 0.9rem;
+      font-weight: 600;
+      box-shadow: 0 4px 10px rgba(37, 99, 235, 0.15);
+      transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
     }
 
-    .btn-play:hover { background: #eef2ff; }
+    .btn-play:hover {
+      background: #eef2ff;
+      transform: translateY(-1px);
+      box-shadow: 0 6px 14px rgba(37, 99, 235, 0.2);
+    }
 
     .player-box {
       border: 1px dashed var(--border);
