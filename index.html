@@ -309,62 +309,39 @@ The fused features are passed through a speech separation module to extract the 
         </div>
       </div>
 
-      <div class="mt-4">
-        <h3 class="section-title">Method Overview (Brief)</h3>
-        <div class="row g-3">
-          <div class="col-md-4">
-            <div class="method-card">
-              <div class="fw-bold">Sync & Calibration</div>
-              <div class="muted">Audio-video alignment with timestamps and calibration files.</div>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="method-card">
-              <div class="fw-bold">Annotation</div>
-              <div class="muted">Event-level intervals and target-level labels.</div>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="method-card">
-              <div class="fw-bold">Baselines</div>
-              <div class="muted">Sound source localization and AV detection baselines.</div>
-            </div>
-          </div>
-        </div>
-      </div>
     </div>
 
-    <div class="section" id="separation">
-      <h2 class="section-title">Separation Demo</h2>
-      <p class="muted">Audio-visual speech separation: click to play the mixture and the separated result.</p>
+    <div class="section" id="extraction">
+      <h2 class="section-title">Extraction Demo</h2>
+      <p class="muted">Audio-visual target speaker extraction: click to play the mixture and the extracted result.</p>
       <div class="row g-3">
         <div class="col-lg-6">
           <div class="sample-card">
-            <div class="sample-title">Mixture vs. Separated Output Demo 01</div>
+            <div class="sample-title">Mixture vs. Extracted Output Demo 01</div>
             <div class="muted">Audio-only playback.</div>
             <div class="sample-actions">
-              <button class="btn btn-sm btn-play" onclick="playSeparationAudio('samples/sep_mix_1.wav')">Play Mixture</button>
-              <button class="btn btn-sm btn-play" onclick="playSeparationAudio('samples/sep_result_1.wav')">Play Separated</button>
+              <button class="btn btn-sm btn-play" onclick="playExtractionAudio('samples/sep_mix_1.wav')">Play Mixture</button>
+              <button class="btn btn-sm btn-play" onclick="playExtractionAudio('samples/sep_result_1.wav')">Play Extracted</button>
             </div>
           </div>
         </div>
         <div class="col-lg-6">
           <div class="sample-card">
-            <div class="sample-title">Mixture vs. Separated Output Demo 02</div>
+            <div class="sample-title">Mixture vs. Extracted Output Demo 02</div>
             <div class="muted">Audio-only playback.</div>
             <div class="sample-actions">
-              <button class="btn btn-sm btn-play" onclick="playSeparationAudio('samples/sep_mix_2.wav')">Play Mixture</button>
-              <button class="btn btn-sm btn-play" onclick="playSeparationAudio('samples/sep_result_2.wav')">Play Separated</button>
+              <button class="btn btn-sm btn-play" onclick="playExtractionAudio('samples/sep_mix_2.wav')">Play Mixture</button>
+              <button class="btn btn-sm btn-play" onclick="playExtractionAudio('samples/sep_result_2.wav')">Play Extracted</button>
             </div>
           </div>
         </div>
         <div class="col-lg-6">
           <div class="sample-card">
-            <div class="sample-title">Mixture vs. Separated Output Demo 03</div>
+            <div class="sample-title">Mixture vs. Extracted Output Demo 03</div>
             <div class="muted">Audio-only playback.</div>
             <div class="sample-actions">
-              <button class="btn btn-sm btn-play" onclick="playSeparationAudio('samples/sep_mix_3.wav')">Play Mixture</button>
-              <button class="btn btn-sm btn-play" onclick="playSeparationAudio('samples/sep_result_3.wav')">Play Separated</button>
+              <button class="btn btn-sm btn-play" onclick="playExtractionAudio('samples/sep_mix_3.wav')">Play Mixture</button>
+              <button class="btn btn-sm btn-play" onclick="playExtractionAudio('samples/sep_result_3.wav')">Play Extracted</button>
             </div>
           </div>
         </div>
@@ -372,8 +349,8 @@ The fused features are passed through a speech separation module to extract the 
 
       <div class="player-box mt-3">
         <div>
-          <div class="fw-bold mb-2">Separation Audio Player</div>
-          <audio id="separation-audio" class="audio-player" controls>
+          <div class="fw-bold mb-2">Extraction Audio Player</div>
+          <audio id="extraction-audio" class="audio-player" controls>
             <source src="" type="audio/wav" />
             Your browser does not support the audio element.
           </audio>
@@ -412,8 +389,8 @@ The fused features are passed through a speech separation module to extract the 
       if (p !== undefined) { p.catch(() => {}); }
     }
 
-    function playSeparationAudio(path) {
-      const player = document.getElementById('separation-audio');
+    function playExtractionAudio(path) {
+      const player = document.getElementById('extraction-audio');
       if (!player) return;
       player.src = path;
       const p = player.play();
