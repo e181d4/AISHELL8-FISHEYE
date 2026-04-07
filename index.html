@@ -78,6 +78,17 @@
       margin-right: 16px;
     }
 
+    .reference-inline {
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .reference-inline a {
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 700;
+    }
+
     .method-card {
       border: 1px solid var(--border);
       border-radius: 10px;
@@ -250,8 +261,12 @@ It has significant practical implications, such as enabling the extraction of be
 To address the lack of dedicated datasets for fisheye audio-visual speech processing, we introduce AISHELL8-FISHEYE, the first fisheye audio-visual dataset for target speaker extraction based on lip movement cues. 
 The dataset consists of video captured by both fisheye and normal cameras as well as the corresponding audio recordings, featuring speakers in wide-angle scenes with significant radial distortion. 
 Alongside the dataset, we propose a novel baseline model that leverages a distortion-aware branch pre-trained on fisheye head pose estimation to extract distortion-robust features, which are then fused with lip motion features extracted via a ResNet-based encoder. 
-The fused features are passed through a speech separation module to extract the target speaker's speech. Experimental results demonstrate that our distortion-aware approach significantly outperforms conventional methods on fisheye data.
+          The fused features are passed through a speech separation module to extract the target speaker's speech. Experimental results demonstrate that our distortion-aware approach significantly outperforms conventional methods on fisheye data.
         </p>
+      </div>
+
+      <div class="reference-inline mt-2">
+        For more details: <a href="https://huggingface.co/datasets/phot0nqqq/AISHELL8-FISHEYE" target="_blank" rel="noreferrer">Hugging Face / AISHELL8-FISHEYE</a>
       </div>
 
       <div class="link-row">
