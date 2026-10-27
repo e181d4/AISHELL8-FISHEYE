@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Audio-Visual Fisheye Dataset</title>
-  <link rel="stylesheet" href="reference/bootstrap-5.2.2-dist/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" />
   <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,700" rel="stylesheet" type="text/css" />
   <style>
     :root {
@@ -115,6 +115,8 @@
     }
 
     .author-card {
+      min-width: 0;
+      overflow-wrap: anywhere;
       border: 1px solid var(--border);
       border-radius: 10px;
       padding: 14px;
@@ -139,11 +141,11 @@
     }
 
     .author-row.three {
-      grid-template-columns: repeat(3, minmax(220px, 1fr));
+      grid-template-columns: repeat(3, minmax(0, 1fr));
     }
 
     .author-row.two {
-      grid-template-columns: repeat(2, minmax(220px, 1fr));
+      grid-template-columns: repeat(2, minmax(0, 1fr));
       max-width: 720px;
       margin: 16px auto 0;
     }
@@ -151,7 +153,7 @@
     @media (max-width: 900px) {
       .author-row.three,
       .author-row.two {
-        grid-template-columns: repeat(2, minmax(220px, 1fr));
+        grid-template-columns: repeat(2, minmax(0, 1fr));
         max-width: none;
       }
     }
@@ -223,33 +225,48 @@
         <div class="authors-box">
           <div class="author-row three">
             <div class="author-card">
-              <div class="fw-bold">Peijun Yang</div>
+              <div class="fw-bold">Peijun Yang<sup>1</sup></div>
               <div class="muted author-meta">photon65537@whu.edu.cn</div>
-              <div class="muted author-meta">Wuhan University</div>
+              <div class="muted author-meta">School of Cyber Science and Engineering, Wuhan University</div>
             </div>
             <div class="author-card">
-              <div class="fw-bold">Zhan Jin</div>
+              <div class="fw-bold">Zhan Jin<sup>3</sup></div>
               <div class="muted author-meta">zhan.jin@whu.edu.cn</div>
-              <div class="muted author-meta">Wuhan University</div>
+              <div class="muted author-meta">School of Artificial Intelligence, The Chinese University of Hong Kong, Shenzhen</div>
             </div>
             <div class="author-card">
-              <div class="fw-bold">Ming Li</div>
-              <div class="muted author-meta">ming.li.cuhksz@gmail.com</div>
-              <div class="muted author-meta">The Chinese University of Hong Kong</div>
+              <div class="fw-bold">Juan Liu<sup>2,*</sup></div>
+              <div class="muted author-meta">liujuan@whu.edu.cn</div>
+              <div class="muted author-meta">School of Artificial Intelligence, Wuhan University</div>
             </div>
           </div>
-          <div class="author-row two">
+          <div class="author-row three" style="margin-top: 16px;">
             <div class="author-card">
-              <div class="fw-bold">Hui Bu</div>
+              <div class="fw-bold">Hui Bu<sup>4</sup></div>
               <div class="muted author-meta">buhui@aishelldata.com</div>
               <div class="muted author-meta">Beijing AISHELL Technology Co., Ltd.</div>
             </div>
             <div class="author-card">
-              <div class="fw-bold">Juan Liu</div>
-              <div class="muted author-meta">liujuan@whu.edu.cn</div>
-              <div class="muted author-meta">Wuhan University</div>
+              <div class="fw-bold">Xiaoyi Qin<sup>5</sup></div>
+              <div class="muted author-meta">X Square Robot, Shenzhen, China</div>
+            </div>
+            <div class="author-card">
+              <div class="fw-bold">Ruyi Gan<sup>5</sup></div>
+              <div class="muted author-meta">X Square Robot, Shenzhen, China</div>
             </div>
           </div>
+          <div class="author-row two">
+            <div class="author-card">
+              <div class="fw-bold">Hao Wang<sup>5</sup></div>
+              <div class="muted author-meta">X Square Robot, Shenzhen, China</div>
+            </div>
+            <div class="author-card">
+              <div class="fw-bold">Ming Li<sup>2,3,*</sup></div>
+              <div class="muted author-meta">mingli369@cuhk.edu.cn</div>
+              <div class="muted author-meta">School of Artificial Intelligence, Wuhan University; School of Artificial Intelligence, The Chinese University of Hong Kong, Shenzhen</div>
+            </div>
+          </div>
+          <div class="muted mt-3"><sup>*</sup> Corresponding authors: Juan Liu (<a href="mailto:liujuan@whu.edu.cn">liujuan@whu.edu.cn</a>) and Ming Li (<a href="mailto:mingli369@cuhk.edu.cn">mingli369@cuhk.edu.cn</a>).</div>
         </div>
       </div>
 
